@@ -2,7 +2,7 @@
 
 namespace Lukebro\Flash;
 
-use Lukebro\Flash\StoreInterface as Store;
+use Lukebro\Flash\FlashStoreInterface as FlashStore;
 
 class Flash
 {
@@ -49,7 +49,7 @@ class Flash
      * 
      * @param Store $session
      */
-    public function __construct(Store $session)
+    public function __construct(FlashStore $session)
     {
         $this->session = $session;
 

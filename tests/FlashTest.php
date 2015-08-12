@@ -15,7 +15,7 @@ class FlashTest extends PHPUnit_Framework_TestCase
 
 	function setUp()
 	{
-		$this->session = m::mock('Lukebro\Flash\StoreInterface', ['has' => false]);
+		$this->session = m::mock('Lukebro\Flash\FlashStoreInterface', ['has' => false]);
 	}
 
 	/** @test */

@@ -2,10 +2,10 @@
 
 namespace Lukebro\Flash;
 
-use Lukebro\Flash\StoreInterface;
+use Lukebro\Flash\FlashStoreInterface;
 use Illuminate\Session\Store;
 
-class Store implements StoreInterface {
+class FlashStore implements FlashStoreInterface {
 
 	/**
 	 * Store object.

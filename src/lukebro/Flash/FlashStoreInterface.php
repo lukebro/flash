@@ -2,7 +2,7 @@
 
 namespace Lukebro\Flash;
 
-interface StoreInterface {
+interface FlashStoreInterface {
 
 	/**
 	 * Flash data to the session.

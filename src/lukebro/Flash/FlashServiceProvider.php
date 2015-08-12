@@ -25,8 +25,8 @@ class FlashServiceProvider extends ServiceProvider
     {
         // Bind store interface to store implemenation. 
         $this->app->bind(
-            'Lukebro\Flash\StoreInterface',
-            'Lukebro\Flash\Store'
+            'Lukebro\Flash\FlashStoreInterface',
+            'Lukebro\Flash\FlashStore'
         );
 
         // Bind flash to LukeBro\Flash\Flash;
