@@ -1,0 +1,38 @@
+<?php
+
+namespace Lukebro\Flash;
+
+use Illuminate\Support\ServiceProvider;
+
+class FlashServiceProvider extends ServiceProvider
+{
+    /**
+     * Bootstrap the application events.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+
+    }
+
+    /**
+     * Register Flash services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        // Bind store interface to store implemenation. 
+        $this->app->bind(
+            'Lukebro\Flash\StoreInterface',
+            'Lukebro\Flash\Store'
+        );
+
+        // Bind flash to LukeBro\Flash\Flash;
+        $this->app->bind('flash', function () {
+            return $this->app->make('Lukebro\Flash\Flash');
+        });
+    }
+
+}

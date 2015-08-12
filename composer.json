@@ -1,0 +1,28 @@
+    {
+    "name": "lukebro/flash",
+    "description": "Magical flash notifications in Laravel 5.1",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Lukasz Brodowski",
+            "email": "lukebrodowski@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">5.5.9",
+        "illuminate/support": "5.1.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.8.*",
+        "mockery/mockery": "dev-master"
+    },
+    "autoload": {
+        "files": [
+            "src/lukebro/Flash/helpers.php"
+        ],
+        "psr-4": {
+            "Lukebro\\": "src/lukebro/"
+        }
+    },
+    "minimum-stability": "stable"
+}
