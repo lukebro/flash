@@ -23,6 +23,5 @@
         "psr-4": {
             "Lukebro\\": "src/lukebro/"
         }
-    },
-    "minimum-stability": "stable"
+    }
 }
