@@ -6,16 +6,6 @@ use Lukebro\Flash\FlashStoreInterface as FlashStore;
 
 class Flash
 {
-    
-    /**
-     * Levels that will be overwritten when stored.
-     * 
-     * @var array
-     */
-    protected $overwrite = [
-        'error' => 'danger'
-    ];
-
     /**
      * Key of flash stored in session.
      * 
@@ -64,13 +54,9 @@ class Flash
      */
     public function create($message, $level)
     {
-        if (array_key_exists($level, $this->overwrite)) {
-            $level = $this->overwrite[$level];
-        }
-
         return $this->session->flash($this->key, [
-            'message' => $message,
-            'level' => $level
+            'level' => $level,
+            'message' => $message
         ]);
     }
 
@@ -145,8 +131,8 @@ class Flash
      */
     public function __call($level, $args)
     {
-        if (count($args) != 1) {
-            throw new InvalidArgumentException;
+        if (count($args) == 0) {
+            return $this->create(null, $level);
         }
 
         return $this->create($args[0], $level);
