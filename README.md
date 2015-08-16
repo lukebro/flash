@@ -81,7 +81,7 @@ Detecting a specific level
 @endif
 ```
 
-## Info
+## Details
 
 The data is stored inside Laravel's session under the key `flash_message` in the following format:
 
