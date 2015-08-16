@@ -81,6 +81,17 @@ Detecting a specific level
 @endif
 ```
 
+## Info
+
+The data is stored inside Laravel's session under the key `flash_message` in the following format:
+
+```php
+	[
+		'level' => '',
+		'message' => ''
+	]
+```
+
 ## Credits
 
 The inspiration for this extremely small package comes from Jeffrey Way's Laracast video: [Elegant Flash Messaging](https://laracasts.com/series/build-project-flyer-with-me/episodes/9).
