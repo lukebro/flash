@@ -22,7 +22,7 @@
         ],
         "psr-4": {
             "Lukebro\\": "src/lukebro/"
-        }
+        },
         "files": [
             "src/lukebro/Flash/helpers.php"
         ]
