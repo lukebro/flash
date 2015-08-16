@@ -93,4 +93,26 @@ class FlashTest extends PHPUnit_Framework_TestCase
 		$this->assertFalse($flash->has('drdre'));
 	}
 
+	/** @test */
+	function it_doesnt_require_a_message()
+	{
+		$this->session->shouldReceive('flash')->with('flash_message', ['level' => 'danger', 'message' => null]);
+
+		$flash = new Flash($this->session);
+
+		$flash->danger();
+	}
+
+	/** @test */
+	function it_returns_a_level_without_a_message()
+	{
+		$this->session->shouldReceive('has')->andReturn(true);
+		$this->session->shouldReceive('get')->with('flash_message')->andReturn(['level' => 'warning', 'message' => null]);
+
+		$flash = new Flash($this->session);
+
+		$this->assertEquals($flash->level, 'warning');
+		$this->assertEquals($flash->message, null);
+	}
+
 }
