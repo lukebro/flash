@@ -46,7 +46,7 @@ Inside your view's you have access to a `flash()->level` and `flash()->message` 
 The `level` attribute is the name of the function you called, which could be anything.
 The `message` attribute is the string you passed into the magical function.
 
-So for the example above, `flash()->level` and `flash()->message` would equal `warning` and `Max file size is 5MB.` respectivly.
+So for the example above, `flash()->level` and `flash()->message` would equal `warning` and `Max file size is 5MB.` respectively.
 
 A flash message is not required, calling just a method will result in just the level being flashed.
 
@@ -83,5 +83,5 @@ Detecting a specific level
 
 ## Credits
 
-The inspiration for this extremely small package comes from Jeffrey Way's Laracast video: [Elegent Flash Messaging](https://laracasts.com/series/build-project-flyer-with-me/episodes/9).
-Definitly check it out.  Jeffrey mentions that you could write the API in a "magical" way, so I thought it would be cool to implement.
+The inspiration for this extremely small package comes from Jeffrey Way's Laracast video: [Elegant Flash Messaging](https://laracasts.com/series/build-project-flyer-with-me/episodes/9).
+Definitely check it out.  Jeffrey mentions that you could write the API in a "magical" way, so I thought it would be cool to implement.
