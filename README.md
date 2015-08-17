@@ -66,6 +66,14 @@ To reflash a notification to the next request use the function `again()`.
 flash()->again();
 ```
 
+### Helper function
+
+You may also just pass a message and a level (optional, default: `success`) into the `flash()` helper function.
+
+```php
+flash('There was an error processing your request.', 'error');
+```
+
 ## Examples
 
 Below are some basic blade templates/examples.
@@ -94,13 +102,17 @@ Detecting a specific level
 The data is stored inside Laravel's session under the key `flash_message` in the following format:
 
 ```php
-	[
-		'level' => '',
-		'message' => ''
-	]
+[
+	'level' => '',
+	'message' => ''
+]
 ```
 
 ## Credits
 
 The inspiration for this extremely small package comes from Jeffrey Way's Laracast video: [Elegant Flash Messaging](https://laracasts.com/series/build-project-flyer-with-me/episodes/9).
 Definitely check it out.  Jeffrey mentions that you could write the API in a "magical" way, so I thought it would be cool to implement.
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
