@@ -2,8 +2,6 @@
 
 namespace Lukebro\Flash;
 
-use Lukebro\Flash\FlashStoreInterface as FlashStore;
-
 class Flash
 {
     /**

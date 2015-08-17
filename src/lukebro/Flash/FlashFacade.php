@@ -4,7 +4,7 @@ namespace Lukebro\Flash;
 
 use Illuminate\Support\Facades\Facade;
 
-class Flash extends Facade {
+class FlashFacade extends Facade {
 
     /**
      * Get the binding in the IoC container.
