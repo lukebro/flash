@@ -48,11 +48,11 @@ class Flash
      * Create a new flash message.
      * @param  string $message
      * @param  string $level
-     * @return boolean
+     * @return void
      */
     public function create($message, $level)
     {
-        return $this->session->flash($this->key, [
+        $this->session->flash($this->key, [
             'level' => $level,
             'message' => $message
         ]);
@@ -92,11 +92,11 @@ class Flash
     /**
      * Reflash message to next session.
      *   
-     * @return boolean
+     * @return void
      */
     public function again()
     {
-        return $this->session->keep([$this->key]);
+        $this->session->keep([$this->key]);
     }
     
 
