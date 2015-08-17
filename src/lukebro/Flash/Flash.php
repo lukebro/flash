@@ -90,6 +90,17 @@ class Flash
     }
 
     /**
+     * Reflash message to next session.
+     *   
+     * @return boolean
+     */
+    public function again()
+    {
+        return $this->session->keep([$this->key]);
+    }
+    
+
+    /**
      * Get the current key used in session.
      * 
      * @return string

@@ -58,6 +58,14 @@ To detect if a flash message exists in the session, use `flash()->exists()`.
 
 If you want to detect a specific level, use the `has()` method.  E.g. `flash()->has('error')`
 
+### Reflashing notifications
+
+To reflash a notification to the next request use the function `again()`.
+
+```php
+flash()->again();
+```
+
 ## Examples
 
 Below are some basic blade templates/examples.

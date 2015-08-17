@@ -115,4 +115,14 @@ class FlashTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals($flash->message, null);
 	}
 
+	/** @test */
+	function it_reflashes_to_the_session()
+	{
+		$this->session->shouldReceive('keep')->with(['flash_message']);
+
+		$flash = new Flash($this->session);
+
+		$flash->again();
+	}
+
 }
