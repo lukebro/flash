@@ -37,7 +37,7 @@ class Flash
      * 
      * @param Store $session
      */
-    public function __construct(FlashStore $session)
+    public function __construct(FlashStoreInterface $session)
     {
         $this->session = $session;
 
