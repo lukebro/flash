@@ -1,5 +1,7 @@
 # Magical flash notifications in Laravel 5.1
 
+[![Build Status](https://travis-ci.org/lukebro/flash.svg?branch=master)](https://travis-ci.org/lukebro/flash)
+
 A simple magical API for flashing notifications to a session inside Laravel 5.1.
 
 ```php
