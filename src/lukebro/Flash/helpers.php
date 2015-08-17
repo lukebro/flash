@@ -9,7 +9,7 @@ if (! function_exists('flash')) {
 	 * 
 	 * @param  string $message
 	 * @param  string $level
-	 * @return void
+	 * @return Lukebro\Flash\Flash|void
 	 */
     function flash($message = null, $level = 'success')
     {
