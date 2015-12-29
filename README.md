@@ -1,8 +1,8 @@
-# Magical flash notifications in Laravel 5.1
+# Magical flash notifications in Laravel 5.*
 
 [![Build Status](https://travis-ci.org/lukebro/flash.svg?branch=master)](https://travis-ci.org/lukebro/flash)
 
-A simple magical API for flashing notifications to a session inside Laravel 5.1.
+A simple magical API for flashing notifications to a session inside Laravel 5.*.
 
 ```php
 flash()->success('Signed in successfully.');
@@ -14,7 +14,7 @@ Requires [PHP 5.5.9](http://php.net), [Laravel 5.*](http://github.com/laravel/la
 
 Add the following line to the require block of your `composer.json` file: 
 ```js
-	"lukebro/flash": "~0.1"
+	"lukebro/flash": "~0.2"
 ```
 
 Run `composer install` or `composer update`.
