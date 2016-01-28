@@ -19,17 +19,17 @@ Add the following line to the require block of your `composer.json` file:
 
 Run `composer install` or `composer update`.
 
-Include the service provider within `app/config/app.php`:
+Include the service provider within `\config\app.php`:
 ```php
 	'providers': [
-			Lukebro/Flash/FlashServiceProvider::class,
+			Lukebro\Flash\FlashServiceProvider::class,
 	];
 ```
 
 Add the facade alias at the bottom of the same file:
 ```php
 	'aliases' => [
-	    'Flash' => Lukebro/Flash/FlashFacade::class
+	    'Flash' => Lukebro\Flash\FlashFacade::class
 	];
 ```
 
