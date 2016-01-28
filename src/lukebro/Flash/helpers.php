@@ -11,7 +11,7 @@ if (! function_exists('flash')) {
 	 * @param  string $level
 	 * @return Lukebro\Flash\FlashFactory|void
 	 */ 
-    function flash($level, $message)
+    function flash($level = null, $message = null)
     {
         $flash = app('flash');
 
