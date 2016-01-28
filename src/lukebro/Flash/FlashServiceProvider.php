@@ -29,9 +29,9 @@ class FlashServiceProvider extends ServiceProvider
             'Lukebro\Flash\FlashStore'
         );
 
-        // Bind flash to LukeBro\Flash\Flash;
+        // Bind flash to LukeBro\Flash\FlashFactory;
         $this->app->bind('flash', function () {
-            return $this->app->make('Lukebro\Flash\Flash');
+            return $this->app->singleton('Lukebro\Flash\FlashFactory');
         });
     }
 

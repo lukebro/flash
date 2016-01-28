@@ -14,14 +14,14 @@ Requires [PHP 5.5.9](http://php.net), [Laravel 5.*](http://github.com/laravel/la
 
 Add the following line to the require block of your `composer.json` file: 
 ```js
-	"lukebro/flash": "~0.2"
+	"lukebro/flash": "~0.3"
 ```
 
 Run `composer install` or `composer update`.
 
 Include the service provider within `app/config/app.php`:
 ```php
-	"providers": [
+	'providers': [
 			Lukebro/Flash/FlashServiceProvider::class,
 	];
 ```
@@ -54,61 +54,129 @@ A flash message is not required, calling just a method will result in just the l
 
 You also have access to a `Flash` facade which you could use in place of the `flash()` helper function.
 
+### Flashing multiple notifications
+
+You can chain your flashes like so:
+
+```php
+flash()->warning('Max file size is 5MB.')
+	   ->warning('Username is required.')
+	   ->danger('There was an error validating your information.');
+```
+
+Inside your views `flash()->level` and `flash()->message` attributes will return the level and message of the **last** message flashed.  To get a `Collection` of all messages flashed you have access to `flash()->all()`.
+
+So for example to iterate through all messages flashed inside your view:
+
+```php
+@foreach (flash()->all() as $flash)
+	<div class="alert alert-{{ $flash->level }}">{{ $flash->message }}</div>
+@endforeach
+```
+
+`flash()->all()` returns Laravel's Collection class, so you have access to all methods Collection contains such as `groupBy()`, `chunk()`, `toJson()`, etc.  It could also just be treated as an array.
+
 ### Detecting flash notifications
 
-To detect if a flash message exists in the session, use `flash()->exists()`.
+To detect if any flash messages exist in the session, use `flash()->exists()`.
 
-If you want to detect a specific level, use the `has()` method.  E.g. `flash()->has('error')`
+If you want to detect a specific level, use the `has()` method.  E.g. `flash()->has('error')`.  This works for single or multiple flashed messages.
+
+It's best use to detect if a certain level was flashed and then display only the notifications of that level using the `get()` method.
+
+```php
+@if (flash()->has('error'))
+	<ul class="errors">
+		@foreach (flash()->get('error') as $flash)
+			<li>{{ $flash->message }}</li>
+		@endforeach
+	</ul>
+@endif
+```
 
 ### Reflashing notifications
 
-To reflash a notification to the next request use the function `again()`.
+To reflash notification or all notifications to the next request use the function `again()`.
 
 ```php
 flash()->again();
 ```
 
-### Helper function
+You're able to flash more messages before, or after calling the `flash()->again()` method.
 
-You may also just pass a message and a level (optional, default: `success`) into the `flash()` helper function.
+## Helper function
+
+You may also just pass a level and a message into the `flash()` helper function.
 
 ```php
-flash('There was an error processing your request.', 'error');
+flash('error', 'There was an error processing your request.');
 ```
+
+## Single vs Multiple Flashes
+
+Depending on what your application needs, set up your views to display flashes using a loop or just the attributes.  For example if your application is only going to flash one notification at a time, using `flash()->level` and `flash()->message` directly in your views is fine.
+
+However, if your application will flash multiple notifications it's best to set up a `foreach` loop and iterate over `flash()->all()`.  Again you'll still have direct access to the `flash()->level` and `flash()->message` attributes even if multiple notifications were flashed, but there values will be of the last notification flashed.
 
 ## Examples
 
 Below are some basic blade templates/examples.
 
 
-Basic example
+Single flash example
 ```php
-@if(flash()->exists())
+@if (flash()->exists())
 	<div class="alert alert-{{ flash()->level }}">
 		{{ flash()->message }}
 	</div>
 @endif
 ```
 
+Multiple flash example
+```php
+@if (flash()->exists())
+	@foreach (flash()->all() as $flash)
+		<div class="alert alert-{{ $flash->level }}">
+			{{ $flash->message }}
+		</div>
+	@endforeach
+@endif
+```
+
 Detecting a specific level
 ```php
-@if(flash()->has('success'))
+@if (flash()->has('success'))
 	<script>
 		launchFireworks();
 	</script>
 @endif
 ```
 
+Detecting a specific level and displaying multiple messages
+```php
+@if (flash()->has('error'))
+	<ul class="errors">
+		@foreach (flash()->get('error') as $flash)
+			<li>{{ $flash->message }}</li>
+		@endforeach
+	</ul>
+@endif
+```
+
 ## Details
 
-The data is stored inside Laravel's session under the key `flash_message` in the following format:
+The data is stored inside Laravel's session under the key `flashes` in the following format:
 
 ```php
 [
-	'level' => '',
-	'message' => ''
+	'flashes' => [
+		['level' => '', 'message' => ],
+		['level' => '', 'message' => ]
+	]
 ]
 ```
+
+`flash()->all()` returns a Collection of Flash object.  A flash object contains two attributes: `level`, and `message` which are publicly accessable.  You may also access them via array syntax as such: `$flash['level']` and `$flash['message']`.  A `Flash` object has a `toArray()` and `toJson()` method.
 
 ## Credits
 

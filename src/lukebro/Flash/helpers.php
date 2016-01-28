@@ -9,16 +9,16 @@ if (! function_exists('flash')) {
 	 * 
 	 * @param  string $message
 	 * @param  string $level
-	 * @return Lukebro\Flash\Flash|void
-	 */
-    function flash($message = null, $level = 'success')
+	 * @return Lukebro\Flash\FlashFactory|void
+	 */ 
+    function flash($level, $message)
     {
-        $flash = app('Lukebro\Flash\Flash');
+        $flash = app('flash');
 
         if (func_num_args() == 0) {
             return $flash;
         }
 
-        $flash->create($message, $level);
+        $flash->create($level, $message);
     }
 }

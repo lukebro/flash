@@ -2,181 +2,99 @@
 
 namespace Lukebro\Flash;
 
-class Flash
+use ArrayAccess;
+use Illuminate\Contracts\Support\Jsonable;
+
+class Flash implements ArrayAccess, Jsonable
 {
-    /**
-     * Key of flash stored in session.
-     * 
-     * @var string
-     */
-    protected $key = 'flash_message';
 
     /**
-     * The current flashed level.
+     * The level of the flash.
      * 
-     * @var string
+     * @var null
      */
-    private $level;
+    public $level = null;
 
     /**
-     * The current flashed message.
+     * The message of the flash.
      * 
-     * @var string
+     * @var null
      */
-    private $message;
+    public $message = null;
 
     /**
-     * The session store.
+     * Create a new instance of a flash.
      * 
-     * @var Store
+     * @param string $level
+     * @param string $message
      */
-    private $session;
-
-    /**
-     * Create a new instance of Flash.
-     * 
-     * @param Store $session
-     */
-    public function __construct(FlashStoreInterface $session)
+    public function __construct($level, $message)
     {
-        $this->session = $session;
-
-        $this->getFromSession();
+        $this->level = $level;
+        $this->message = $message;
     }
 
     /**
-     * Create a new flash message.
-     * @param  string $message
-     * @param  string $level
-     * @return void
-     */
-    public function create($message, $level)
-    {
-        $this->session->flash($this->key, [
-            'level' => $level,
-            'message' => $message
-        ]);
-    }
-
-    /**
-     * Determine if the flash has the level.
+     * Check to see if certain offset exists.
      * 
-     * @param  string $level
-     * @return boolean      
-     */
-    public function has($level)
-    {
-        return $this->level === $level;
-    }
-
-    /**
-     * Get the current flash message.
-     * 
-     * @return string
-     */
-    public function get()
-    {
-        return $this->message;
-    }
-
-    /**
-     * Determine if any flashes exist in current session.
-     * 
+     * @param  mixed $offset
      * @return boolean
      */
-    public function exists()
+    public function offsetExists($offset)
     {
-        return $this->session->has($this->key);
+    	return isset($this->$offset);
     }
 
     /**
-     * Reflash message to next session.
-     *   
+     * Get a certain offset.
+     * 
+     * @param  mixed $offset
+     * @return mixed
+     */
+    public function offsetGet($offset)
+    {
+    	return isset($this->$offset) ? $this->$offset : null;
+    }
+
+    /**
+     * Set a certain offset with a value.
+     * 
+     * @param  mixed $offset
+     * @param  mixed $value
      * @return void
      */
-    public function again()
+    public function offsetSet($offset, $value)
     {
-        $this->session->keep([$this->key]);
-    }
-    
-
-    /**
-     * Get the current key used in session.
-     * 
-     * @return string
-     */
-    public function getKey()
-    {
-        return $this->key;
+    	$this->$offset = $value;
     }
 
     /**
-     * Get the current flash level.
-     * 
-     * @return string
-     */
-    public function getLevel()
-    {
-        return $this->level;
-    }
-
-    /**
-     * Get the current flash message.
-     * 
-     * @return string
-     */
-    public function getMessage()
-    {
-        return $this->message;
-    }
-
-    /**
-     * Creates a new flash message where the level
-     * is the method name and parameter is the message.
-     * 
-     * @param  string $level
-     * @param  array $args
-     * @return boolean
-     */
-    public function __call($level, $args)
-    {
-        if (count($args) == 0) {
-            return $this->create(null, $level);
-        }
-
-        return $this->create($args[0], $level);
-    }
-
-    /**
-     * Gets the current flash level
-     * and message using accessor methods.
-     * 
-     * @param  string $attribute
-     * @return string|null
-     */
-    public function __get($attribute)
-    {
-        $func = 'get' . $attribute;
-
-        if(method_exists($this, $func)) {
-            return $this->$func();
-        }
-
-        return null;
-    }
-
-    /**
-     * Get current flash message from session.
-     * 
+     * Unset a certain offset.
+     * @param  mixed $offset
      * @return void
      */
-    private function getFromSession()
+    public function offsetUnset($offset)
     {
-        if($this->exists()) {
-            $flash = $this->session->get($this->key);
+    	unset($this->$offset);
+    }
 
-            $this->level = $flash['level'];
-            $this->message = $flash['message'];
-        }
+    /**
+     * Convert object to array.
+     * 
+     * @return array
+     */
+    public function toArray()
+    {
+        return ['level' => $this->level, 'message' => $this->message];
+    }
+
+    /**
+     * Convert object to json.
+     * 
+     * @return string
+     */
+    public function toJson($options = 0)
+    {
+        return json_encode($this->toArray(), $options);
     }
 }
