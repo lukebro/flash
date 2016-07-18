@@ -178,6 +178,14 @@ The data is stored inside Laravel's session under the key `flashes` in the follo
 
 `flash()->all()` returns a Collection of Flash object.  A flash object contains two attributes: `level`, and `message` which are publicly accessable.  You may also access them via array syntax as such: `$flash['level']` and `$flash['message']`.  A `Flash` object has a `toArray()` and `toJson()` method.
 
+## Contributions
+
+Feel free to [create an issue](https://github.com/lukebro/flash/issues) with a feature request or bug report.  If you would rather implement the feature or fix the bug yourself, create a pull request.  I'm not sure how far I want to take this package, as of right now I'm pretty happy where it stands.
+
+Contributions can be made to the documentation as well, not just code.  If you think you can explain the API better than I can, please do and I'll be happy to merge it in.
+
+I'd love to hear your feedback in how the package feels and what you don't like about it.
+
 ## Credits
 
 The inspiration for this extremely small package comes from Jeffrey Way's Laracast video: [Elegant Flash Messaging](https://laracasts.com/series/build-project-flyer-with-me/episodes/9).
