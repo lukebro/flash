@@ -1,4 +1,4 @@
-# Magical flash notifications in Laravel 5.*
+# Magical flash notifications in Laravel 5.* & 6.*
 
 [![Build Status](https://travis-ci.org/lukebro/flash.svg?branch=master)](https://travis-ci.org/lukebro/flash)
 
@@ -10,7 +10,7 @@ flash()->success('Signed in successfully.');
 
 ## Installation
 
-Requires [PHP 5.5.9](http://php.net), [Laravel 5.*](http://github.com/laravel/laravel) and [Composer](http://getcomposer.org).
+Requires [PHP 5.5.9](http://php.net), [Laravel 5.* & 6.*](http://github.com/laravel/laravel) and [Composer](http://getcomposer.org).
 
 Add the following line to the require block of your `composer.json` file: 
 ```js
